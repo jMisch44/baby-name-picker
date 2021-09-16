@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+// useEffect
 import { BabyNameList } from "./Components/BabyNameList";
 import SearchBar from "./Components/SearchBar";
 import babyNameData from "./babyNameData";
@@ -20,7 +21,7 @@ const sortedNames = babyNameData.sort((a, b) => {
 function App() {
   const [babyNames, setBabyNames] = useState(sortedNames);
   const [input, setInput] = useState("");
-  const [searchedNames, setSearchedNames] = useState([{}]);
+  // const [searchedNames, setSearchedNames] = useState([{}]);
   const [favoriteNames, setFavoriteNames] = useState([]);
 
   const formSubmit = (text) => {
@@ -36,13 +37,13 @@ function App() {
     // setFavoriteNames(favoriteNames.filter((baby) => baby.id !== fav.id));
   };
 
-  useEffect(() => {
-    setSearchedNames(
-      babyNames.filter((baby) => {
-        return baby.name.toLowerCase().includes(input);
-      })
-    );
-  }, [input]);
+  // useEffect(() => {
+  //   setSearchedNames(
+  //     babyNames.filter((baby) => {
+  //       return baby.name.toLowerCase().includes(input);
+  //     })
+  //   );
+  // }, [input]);
 
   return (
     <div className="mx-auto">
@@ -55,10 +56,7 @@ function App() {
           favoriteNames={favoriteNames}
           deleteFavoriteName={deleteFavoriteName}
         />
-        <BabyNameList
-          searchedNames={searchedNames}
-          addFavoriteName={addFavoriteName}
-        />
+        <BabyNameList babyNames={babyNames} addFavoriteName={addFavoriteName} />
       </div>
     </div>
   );
